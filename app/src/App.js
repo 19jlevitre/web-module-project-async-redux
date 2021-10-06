@@ -2,10 +2,38 @@ import React, { useEffect } from 'react';
 import './App.css';
 import { connect } from 'react-redux';
 import { getJoke } from './actions/actions'
+import styled from 'styled-components';
 
 function App(props) {
   const { dog, isFetching, error, getJoke } = props;
+  const Body =styled.div`
+   display: flex;
+   flex-direction:column;
   
+   
+
+
+   button{
+     width: 20%;
+     height: 5vh;
+     position: static;
+     margin-bottom: 5%;
+   }
+   img{
+     margin-bottom:10%;
+     border: 2px black solid;
+     border-radius: 5%;
+   }
+
+   h1{
+     color: white;
+   }
+   
+   h2{
+     color: white;
+   }
+   
+  `
   useEffect(()=> {
     props.getJoke();
   }, [])
@@ -26,14 +54,16 @@ function App(props) {
   
   
   return (
-    <div className="App">
+    <Body className="App">
       <h1>Woof.....?</h1>
       <div className="dog-card">
         <h2>Drum Roll please.....</h2>
-        <img  width='50%' height='50%' src={dog.url} alt='Guess we couldnt find it, try again'/>
         <button onClick={handleClick}>Find a Doggo</button>
+        <img  width='90%' height='800px' src={dog.url} alt='Guess we couldnt find it, try again'/>
+        
+        
       </div>
-    </div>
+    </Body>
   );
 }
 const mapStateToProps = state => {
